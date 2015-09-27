@@ -1,1 +1,33 @@
-hello entenhausen
+---
+layout: default
+---
+
+{% assign curDate = site.time | date: '%s' %}
+
+<div class="xxx">
+
+  <h1 class="xxx">Upcoming Events heeeere</h1>
+
+  <ul class="xxx">
+    <!-- loop through all entries -->
+    {% for event in site.posts %}
+
+      {% assign postStartDate = event.date | date: '%s' %}
+      {% if postStartDate >= curDate %}
+        <!-- only render event if it has an event url -->
+
+        <li>
+
+          <span class="xxx">{{ event.date | date: "%a, %b %-d" }}, {{ event.start_time | time: "%h %m" }}: </span>
+          <strong class="xxx">{{ event.title }}</strong>
+        </li>
+
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+ -->
+</div>
+
+renderstamp: {{ site.time }}

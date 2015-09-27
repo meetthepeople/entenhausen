@@ -1,0 +1,26 @@
+# Site settings
+title: entenhausen
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "/entenhausen" # the subpath of your site, e.g. /blog/
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+twitter_username: jekyllrb
+github_username:  jekyll
+
+asset_path: "/assets" # "http://127.0.0.1:5000/assets" # move to baseurl/assets in production
+mtp_css: "/css/main.css"
+
+
+timezone: Europe/Berlin
+
+# Build settings
+markdown: kramdown
+
+name: meet the people
+markdown: redcarpet
+permalink: :title
+baseurl: /entenhausen
+url: http://meetthepeople.in/entenhausen
