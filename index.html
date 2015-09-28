@@ -2,7 +2,15 @@
 layout: default
 ---
 
-{% assign curDate = site.time | date: '%s' %}
+{% assign curDateRaw = site.time | date: '%s' %}
+
+
+{% capture curDate %} {{ curDateRaw | divided_by:86400 }} {% endcapture %}
+
+
+
+raw {{ curDateRaw }}
+cur {{ curDate }}
 
 <div class="xxx">
 
@@ -12,17 +20,24 @@ layout: default
     <!-- loop through all entries -->
     {% for event in site.posts %}
 
-      {% assign postStartDate = event.date | date: '%s' %}
-      {% if postStartDate >= curDate %}
+      {% assign postStartDateRaw = event.date | date: '%s' %}
+      {% capture postStartDate %} {{ postStartDateRaw | divided_by:86400 }} {% endcapture %}
+      {% capture postStartDateMinusOne %} {{ postStartDate | plus:1 }} {% endcapture %}
+
+        <!-- TODO -->
         <!-- only render event if it has an event url -->
+
+        {% if postStartDateMinusOne >= curDate %}
 
         <li>
 
           <span class="xxx">{{ event.date | date: "%a, %b %-d" }}, {{ event.start_time | time: "%h %m" }}: </span>
           <strong class="xxx">{{ event.title }}</strong>
+          <span> stamp: {{ postStartDateMinusOne }}</span>
         </li>
 
       {% endif %}
+
     {% endfor %}
   </ul>
 
