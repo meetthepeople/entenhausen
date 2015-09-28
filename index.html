@@ -14,7 +14,7 @@ cur {{ curDate }}
 
 <div class="xxx">
 
-  <h1 class="xxx">Upcoming Events heeeere</h1>
+  <h1 class="xxx">Upcoming Events in {{ site.title }}</h1>
 
   <ul class="xxx">
     <!-- loop through all entries -->
@@ -31,8 +31,10 @@ cur {{ curDate }}
 
         <li>
 
-          <span class="xxx">{{ event.date | date: "%a, %b %-d" }}, {{ event.start_time | time: "%h %m" }}: </span>
-          <strong class="xxx">{{ event.title }}</strong>
+          <span class="xxx">{{ event.date | date: "%a, %b %-d" }}{% if event.end_date %} until {{ event.end_date | date: "%a, %b %-d" }}{% endif %}: </span>
+          <strong class="xxx">
+            <a href="{{ event.event_url }}">{{ event.title }}</a>
+          </strong>
           <span> stamp: {{ postStartDateMinusOne }}</span>
         </li>
 
