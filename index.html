@@ -9,7 +9,7 @@ layout: default
 
 
 <p>
-  <button onclick="blendInTheEditLinks()">[e] edit</button>
+  <button onclick="blendInTheLinks()">[e] edit</button>
 </p>
 
 <div class="xxx">
@@ -39,12 +39,21 @@ layout: default
           <!-- <span>stamp: {{ postStartDateMinusOne }}</span> -->
           <span class="editLink"><a href="https://github.com/meetthepeople/{{ site.title }}/edit/gh-pages/{{ event.path }}">edit</a></span>
 
+          <span class="deleteLink"><a href="https://github.com/meetthepeople/{{ site.title }}/delete/gh-pages/{{ event.path }}">delete</a></span>
+
         </li>
 
       {% endif %}
 
     {% endfor %}
   </ul>
+  <p>
+    <span class=""><a href="https://github.com/meetthepeople/{{ site.title }}/new/gh-pages/_posts?filename=2015-09-19-nice-meetup.md&value=---%0Atitle: A nice Meetup%0Aevent_url: 'https://meetup.com/path/to/my/eventpage/'%0A---">Add Event</a></span>
+
+  </p>
+
+
+
 
   <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
  -->
@@ -54,20 +63,26 @@ renderstamp: {{ site.time }}
 
 <script type="text/javascript">
 
-function blendInTheEditLinks() {
-  for (var i = 0; i < editLinks.length; i++)
+var editLinks = document.getElementsByClassName("editLink");
+var deleteLinks = document.getElementsByClassName("deleteLink");
+
+
+function blendInTheLinks() {
+  for (var i = 0; i < editLinks.length; i++) {
     editLinks[i].style.opacity = '1';
+    deleteLinks[i].style.opacity = '1';
+  };
 
 }
 
-  var editLinks = document.getElementsByClassName("editLink");
-  // http://stackoverflow.com/questions/5597060/detecting-arrow-key-  presses-in-javascript/17929007#17929007
-  document.onkeydown = function(e) {
-    switch (e.keyCode) {
-        case 69:
-          blendInTheEditLinks();
-            break;
-    }
+
+// http://stackoverflow.com/questions/5597060/detecting-arrow-key-  presses-in-javascript/17929007#17929007
+document.onkeydown = function(e) {
+  switch (e.keyCode) {
+      case 69:
+        blendInTheLinks();
+          break;
+  }
 };
 
 
