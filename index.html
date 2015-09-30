@@ -8,9 +8,9 @@ layout: default
 {% capture curDate %} {{ curDateRaw | divided_by:86400 }} {% endcapture %}
 
 
-
-raw {{ curDateRaw }}
-cur {{ curDate }}
+<p>
+  <button onclick="blendInTheEditLinks()">[e] edit</button>
+</p>
 
 <div class="xxx">
 
@@ -53,13 +53,19 @@ cur {{ curDate }}
 renderstamp: {{ site.time }}
 
 <script type="text/javascript">
+
+function blendInTheEditLinks() {
+  for (var i = 0; i < editLinks.length; i++)
+    editLinks[i].style.opacity = '1';
+
+}
+
   var editLinks = document.getElementsByClassName("editLink");
   // http://stackoverflow.com/questions/5597060/detecting-arrow-key-  presses-in-javascript/17929007#17929007
   document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 69:
-            for (var i = 0; i < editLinks.length; i++)
-              editLinks[i].style.opacity = '1';
+          blendInTheEditLinks();
             break;
     }
 };
