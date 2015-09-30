@@ -18,7 +18,7 @@ cur {{ curDate }}
 
   <ul class="xxx">
     <!-- loop through all entries -->
-    {% for event in site.posts %}
+    {% for event in site.posts reversed %}
 
       {% assign postStartDateRaw = event.date | date: '%s' %}
       {% capture postStartDate %} {{ postStartDateRaw | divided_by:86400 }} {% endcapture %}
