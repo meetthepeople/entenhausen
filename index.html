@@ -35,7 +35,10 @@ cur {{ curDate }}
           <strong class="xxx">
             <a href="{{ event.event_url }}">{{ event.title }}</a>
           </strong>
-          <span> stamp: {{ postStartDateMinusOne }}</span>
+
+          <!-- <span>stamp: {{ postStartDateMinusOne }}</span> -->
+          <span class="editLink"><a href="https://github.com/meetthepeople/{{ site.title }}/edit/gh-pages/{{ event.path }}">edit</a></span>
+
         </li>
 
       {% endif %}
@@ -48,3 +51,18 @@ cur {{ curDate }}
 </div>
 
 renderstamp: {{ site.time }}
+
+<script type="text/javascript">
+  var editLinks = document.getElementsByClassName("editLink");
+  // http://stackoverflow.com/questions/5597060/detecting-arrow-key-  presses-in-javascript/17929007#17929007
+  document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 69:
+            for (var i = 0; i < editLinks.length; i++)
+              editLinks[i].style.opacity = '1';
+            break;
+    }
+};
+
+
+</script>
