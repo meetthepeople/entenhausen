@@ -39,7 +39,7 @@ layout: default
           <!-- <span>stamp: {{ postStartDateMinusOne }}</span> -->
           <span class="editLink"><a href="https://github.com/meetthepeople/{{ site.title }}/edit/gh-pages/{{ event.path }}">edit</a></span>
 
-          <span class="deleteLink"><a href="https://github.com/meetthepeople/{{ site.title }}/delete/gh-pages/{{ event.path }}">delete</a></span>
+          <span class="deleteLink"><a href="https://github.com/meetthepeople/{{ site.title }}/delete/gh-pages/{{ event.path }}">&#x2715;</a></span><!-- https://en.wikipedia.org/wiki/X_mark -->
 
         </li>
 
@@ -48,7 +48,7 @@ layout: default
     {% endfor %}
   </ul>
   <p>
-    <span class=""><a href="https://github.com/meetthepeople/{{ site.title }}/new/gh-pages/_posts?filename=2015-09-19-nice-meetup.md&value=---%0Atitle: A nice Meetup%0Aevent_url: 'https://meetup.com/path/to/my/eventpage/'%0A---">Add Event</a></span>
+    <span class=""><a href="https://github.com/meetthepeople/{{ site.title }}/new/gh-pages/_posts/?filename=2015-09-19-nice-meetup.md&value=---%0Atitle: A nice Meetup%0Aevent_url: 'https://meetup.com/path/to/my/eventpage/'%0A---">Add Event</a></span>
 
   </p>
 
