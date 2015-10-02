@@ -56,7 +56,7 @@ renderstamp: {{ site.time }}
 
         {% if postStartDateMinusOne >= curDate %}
 
-        <li>
+        <li class="event-entry">
 
           <span class="xxx">{{ event.date | date: "%a, %b %-d" }}{% if event.end_date %} until {{ event.end_date | date: "%a, %b %-d" }}{% endif %}: </span>
           <strong class="xxx">
