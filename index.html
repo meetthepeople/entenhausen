@@ -2,10 +2,26 @@
 layout: default
 ---
 
+<!-- get strftime in seconds, see http://strftime.org/ -->
 {% assign curDateRaw = site.time | date: '%s' %}
-
-
+<!-- convert to days: 60 (secs per min) * 60 (min per hour) * 24 (hours per day) = 86400s -->
 {% capture curDate %} {{ curDateRaw | divided_by:86400 }} {% endcapture %}
+
+
+<div class="header">
+
+<img class="city-emblem" src="entenhausen.svg">
+
+<!-- <p>Cupcake ipsum dolor. Sit amet I love bonbon* bear claw tootsie roll jelly.* I love chocolate ice cream* chupa chups I love. Gummi bears I love wafer marzipan jujubes sweet tootsie roll bear claw. Dessert gingerbread dragée sweet roll liquorice fruitcake marzipan donut. I love I love sugar plum marshmallow jujubes. Cotton candy jujubes oat cake chocolate cake chocolate cake marshmallow bear claw chocolate cake. Jelly cupcake gingerbread I love cupcake sesame snaps apple pie oat cake.
+</p>
+ -->
+</div> <!-- .header -->
+
+
+<div class="content">
+
+<!-- <p>Cupcake ipsum dolor. Sit amet I love bonbon* bear claw tootsie roll jelly.* I love chocolate ice cream* chupa chups I love.</p> -->
+
 
 
 <p>
@@ -60,6 +76,9 @@ layout: default
 </div>
 
 renderstamp: {{ site.time }}
+</div> <!-- .content -->
+
+
 
 <script type="text/javascript">
 
