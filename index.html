@@ -1,7 +1,9 @@
 ---
 ---
 
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+
+<html lang="" manifest="/{{ site.title }}/offline.appcache">
 
 <head>
   <meta charset="utf-8">
@@ -127,6 +129,21 @@ document.onkeydown = function(e) {
 };
 </script>
 
+<script type="text/javascript">
+    // tell user about updates. via https://gregsramblings.com/2012/05/28/html5-application-cache-how-to/
+    if (window.applicationCache) {
+        applicationCache.addEventListener('updateready', function() {
+            if (confirm('An update is available. Reload now?')) {
+                window.location.reload();
+            }
+        });
+   }
+</script>
+
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 <footer></footer>
 </body></html>
