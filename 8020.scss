@@ -3,6 +3,48 @@
 
 @import "bootstrap";
 
+@mixin dark-crosshatch {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA7+M2IR/w8UY0SXAAuCFCNLwAWRJVAEYRIYgiAJALsgBgYbCawOAAAAAElFTkSuQmCC);
+	background-color: #7a7a7a;
+	background-repeat: repeat;
+	color: #eee;
+}
+.dark { @include dark-crosshatch; }
+
+@mixin light-crosshatch {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAALElEQVQIW2NkwALevXv3nxFdHCQoJCTEiCIBEwQphksgC8Il0AXBEtgEQRIA6zMX0LikUbQAAAAASUVORK5CYII=);
+	background-color: #f9f9f9;
+	background-repeat: repeat;
+	color: #111;
+
+}
+.light {
+	@include light-crosshatch;
+}
+
+@mixin sketchy-border ($weight: 500) {
+  border: 10px solid transparent;
+  padding: 10px;
+  border-image: url("border-image/sketchy-border-#{$weight}.png") 50;
+  border-image: url("border-image/sketchy-border-felt-tip-#{$weight}-m.png") 17;
+}
+
+.sketchy-border, .card, .btn {
+	@include sketchy-border(300);
+}
+
+.btn-primary {
+	@include light-crosshatch;
+	@include sketchy-border(700);
+}
+.btn:hover {
+	@include dark-crosshatch;
+	@include sketchy-border(700);
+}
+
+.badge {
+	@include dark-crosshatch;
+}
 
 .when-is-event-badge {
 	margin-right: 0.5em;
@@ -29,18 +71,41 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
+	background-color: white;
+}
+
+@media screen and (max-width: 750px) {
+	.list-container {
+		// background-color: green;
+		width: 100%;
+		margin: 1em;
+	}
+	h1 {
+		font-size: 2.62em !important;
+	}
+
+	.event-entry {
+		// position: static;
+		right: 0 !important;
+	}
 }
 
 
 .list-container {
 	// grid-column: 2 / span 1;
 	// grid-row: 8;
-	width: 38vw;
+	width: 25rem;
 	position: absolute;
 	right: 0;
 	top: 62vh;
+	overflow: hidden;
 	margin-right: 1em;
 }
+
+// .event-entry {
+// 	position: relative;
+// 	right: -1em;
+// }
 
 .card {
 	margin-bottom: 1em;
@@ -73,16 +138,3 @@ body {
   	// padding: 1.62em;
 }
 
-.dark {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA7+M2IR/w8UY0SXAAuCFCNLwAWRJVAEYRIYgiAJALsgBgYbCawOAAAAAElFTkSuQmCC);
-	background-color: #7a7a7a;
-	background-repeat: repeat;
-	color: #eee;
-}
-
-.light {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAALElEQVQIW2NkwALevXv3nxFdHCQoJCTEiCIBEwQphksgC8Il0AXBEtgEQRIA6zMX0LikUbQAAAAASUVORK5CYII=);
-	background-color: #f9f9f9;
-	background-repeat: repeat;
-	color: #111;
-}

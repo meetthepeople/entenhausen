@@ -5,8 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+_site/
 .sass-cache/
-
+.DS_Store
 # Runtime data
 pids
 *.pid
