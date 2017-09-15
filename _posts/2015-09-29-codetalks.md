@@ -1,5 +1,0 @@
----
-title: code.talks
-event_url: "https://www.codetalks.de/"
-end_date: 2015-09-30
----

@@ -1,0 +1,88 @@
+---
+---
+
+@import "bootstrap";
+
+
+.when-is-event-badge {
+	margin-right: 0.5em;
+}
+
+.editLink, .deleteLink {
+	opacity: 0;
+	display: inline !important;
+	margin: 0 0 0 1em;
+}
+
+.action-bar {
+	// text-align: right;
+}
+
+.cardlink {
+	display: block;
+}
+.city-display {
+	// grid-column: 1 / span 1;
+	// grid-row: span 5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+
+.list-container {
+	// grid-column: 2 / span 1;
+	// grid-row: 8;
+	width: 38vw;
+	position: absolute;
+	right: 0;
+	top: 62vh;
+	margin-right: 1em;
+}
+
+.card {
+	margin-bottom: 1em;
+	padding: 0.62em 1em;
+}
+
+.headline-card {
+	sth: df;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Cabin+Sketch:400,700);
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../fonts/glyphicons-halflings-regular.eot?v2');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/glyphicons-halflings-regular.woff?v2') format('woff'),
+         url('../fonts/glyphicons-halflings-regular.ttf?v2') format('truetype'),
+         url('../fonts/glyphicons-halflings-regular.svg#glyph') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+	font-family: 'Cabin Sketch';
+	// display: grid;
+	// grid-template-columns: 1.62fr 1fr;
+	// grid-template-rows: 20vh;
+  	// grid-gap: 1.62em;
+  	// padding: 1.62em;
+}
+
+.dark {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA7+M2IR/w8UY0SXAAuCFCNLwAWRJVAEYRIYgiAJALsgBgYbCawOAAAAAElFTkSuQmCC);
+	background-color: #7a7a7a;
+	background-repeat: repeat;
+	color: #eee;
+}
+
+.light {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAALElEQVQIW2NkwALevXv3nxFdHCQoJCTEiCIBEwQphksgC8Il0AXBEtgEQRIA6zMX0LikUbQAAAAASUVORK5CYII=);
+	background-color: #f9f9f9;
+	background-repeat: repeat;
+	color: #111;
+}

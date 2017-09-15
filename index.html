@@ -1,109 +1,107 @@
 ---
 ---
 
-<!DOCTYPE html><html>
+<!DOCTYPE html><html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+	<title>Your awesome title</title>
+	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search resu...">
 
-<!-- use asset path -->
-<link rel="stylesheet" href="{{ site.mtp_css | prepend: site.asset_path }}">
-<link rel="stylesheet" href="css/local.css">
+	<link rel="stylesheet" href="8020.css">
 
-  <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"> -->
-  <!-- <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" /> -->
 </head>
 
 <body>
 
+<div class="jumbotron light city-display">
+	<div class="fixa">
 
+		<h1 class="display-3">Hello, world!</h1>
+		<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		<hr class="my-4">
+		<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+		<p class="lead">
+
+		<a class="btn btn-primary btn-lg" href="https://github.com/meetthepeople/{{ site.title }}/new/gh-pages/_posts/?filename=nice-meetup.md&value=---%0Atitle: A nice Meetup%0Adate: yy-mm-dd  %0Aevent_url: 'https://somewhere.com/path/to/my/eventpage/'%0A---">
+        <span class="plus">+</span> Add Event</a>
+
+        <a href="#d" class="btn btn-outline-secondary edit-button" style="margin-left: 1em;" onclick="blendInTheLinks()">[e]dit events</a>
+
+		</p>
+
+
+
+	</div>
+</div>
 
 
 <!-- get strftime in seconds, see http://strftime.org/ -->
-{% assign curDateRaw = site.time | date: '%s' %}
+{% assign siteTimeInSeconds = site.time | date: '%s' %}
 <!-- convert to days: 60 (secs per min) * 60 (min per hour) * 24 (hours per day) = 86400s -->
-{% capture curDate %} {{ curDateRaw | divided_by:86400 }} {% endcapture %}
+{% capture siteTimeinDays %} {{ siteTimeInSeconds | divided_by:86400 }} {% endcapture %}
 
 
-<div class="header">
-
-  <h3>Upcoming Events in...</h3>
-  <img class="city-emblem" src="entenhausen.svg">
-  <h1 class="xxx">{{ site.title }}</h1>
-
-  <p class="add-event-button">
-    <span class="">
-      <a href="https://github.com/meetthepeople/{{ site.title }}/new/gh-pages/_posts/?filename=2015-09-19-nice-meetup.md&value=---%0Atitle: A nice Meetup%0Aevent_url: 'https://meetup.com/path/to/my/eventpage/'%0A---">
-        <span class="plus">+</span> Add Event</a>
-    </span>
-  </p>
-
-  <p class="join-slack-button">
-    <span class="">
-      <a href="http://meetthepeople-in.herokuapp.com/">
-        <span class="plus">+</span> Join the Slack Hub</a>
-    </span>
-  </p>
+<div class="list-container">
 
 
 
-<p>
-  <button onclick="blendInTheLinks()">[e] edit</button>
-</p>
+
+	<!-- TODO: SORT BY DATE FIRST 😬 -->
+
+{% assign sorted_events = site.events | sort: 'date' %}
+
+{% for event in site.events %}
 
 
-renderstamp: {{ site.time }}
+	    <div class="card">
+
+			<!-- get strftime in seconds, see http://strftime.org/ -->
+			<!-- convert to days: 60 (secs per min) * 60 (min per hour) * 24 (hours per day) = 86400s -->
+			<!-- for some reason we need to add a day to match two same dates idk -->
+
+			{% assign eventDateInDays = event.date | date: '%s' | divided_by:86400 | plus:1 %}
+
+			<!-- now we compare build time and event time and find out if event is today, tomorrow, or later... -->
+
+			{% assign diffToToday = eventDateInDays | minus:siteTimeinDays %}
+
+	    	<p>
+	    		{% if diffToToday == 0 %}<span class="when-is-event-badge badge badge-primary">Today!</span>{% endif %}
+	    		{% if diffToToday == 1 %}<span class="when-is-event-badge badge badge-secondary">Tomorrow</span>{% endif %}
+
+	    		{{ event.date | date: "%a, %b %-d" }}{% if event.end_date %} until {{ event.end_date | date: "%a, %b %-d" }}{% endif %}
+	    </p>
+
+	    	<a class="cardlink" href="{{ event.event_url }}">
+	    		<h3>{{ event.title }}</h3>
+	    	</a>
+
+	    	<span class="action-bar">
+				<a href="{{ event.event_url }}" class="btn btn-outline-secondary">More Info...</a>
 
 
-<!-- <p>Cupcake ipsum dolor. Sit amet I love bonbon* bear claw tootsie roll jelly.* I love chocolate ice cream* chupa chups I love. Gummi bears I love wafer marzipan jujubes sweet tootsie roll bear claw. Dessert gingerbread dragée sweet roll liquorice fruitcake marzipan donut. I love I love sugar plum marshmallow jujubes. Cotton candy jujubes oat cake chocolate cake chocolate cake marshmallow bear claw chocolate cake. Jelly cupcake gingerbread I love cupcake sesame snaps apple pie oat cake.
-</p>
- -->
-</div> <!-- .header -->
+				<span class="editLink"><a href="https://github.com/meetthepeople/{{ site.title }}/edit/gh-pages/{{ event.path }}">edit</a></span>
+				<span class="deleteLink"><a href="https://github.com/meetthepeople/{{ site.title }}/delete/gh-pages/{{ event.path }}">&#x2715;</a></span><!-- https://en.wikipedia.org/wiki/X_mark -->
+	    	</span>
+
+	    </div>
 
 
-<div class="content">
-  <div class="xxx">
-    <ul class="xxx">
-      <!-- loop through all entries -->
-      {% for event in site.posts reversed %}
+	{% endfor %}
 
-        {% assign postStartDateRaw = event.date | date: '%s' %}
-        {% capture postStartDate %} {{ postStartDateRaw | divided_by:86400 }} {% endcapture %}
-        {% capture postStartDateMinusOne %} {{ postStartDate | plus:1 }} {% endcapture %}
+		<div class="card-block">
+			<h2>Tomorrow</h2>
+		</div>
+	</div>
 
-          <!-- TODO -->
-          <!-- only render event if it has an event url -->
 
-          {% if postStartDateMinusOne >= curDate %}
 
-          <li class="event-entry">
 
-            <span class="xxx">{{ event.date | date: "%a, %b %-d" }}{% if event.end_date %} until {{ event.end_date | date: "%a, %b %-d" }}{% endif %}: </span>
-            <strong class="xxx">
-              <a href="{{ event.event_url }}">{{ event.title }}</a>
-            </strong>
-
-            <!-- <span>stamp: {{ postStartDateMinusOne }}</span> -->
-            <span class="editLink"><a href="https://github.com/meetthepeople/{{ site.title }}/edit/gh-pages/{{ event.path }}">edit</a></span>
-
-            <span class="deleteLink"><a href="https://github.com/meetthepeople/{{ site.title }}/delete/gh-pages/{{ event.path }}">&#x2715;</a></span><!-- https://en.wikipedia.org/wiki/X_mark -->
-
-          </li>
-
-        {% endif %}
-
-      {% endfor %}
-    </ul>
-
-    <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
-  </div> <!-- .xxx -->
-</div> <!-- .content -->
+</div>
 
 <script type="text/javascript">
 
@@ -127,7 +125,4 @@ document.onkeydown = function(e) {
 };
 </script>
 
-
-<footer></footer>
 </body></html>
-
